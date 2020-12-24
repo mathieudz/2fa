@@ -127,6 +127,8 @@ class TwoFactorProviderPreparationListener implements EventSubscriberInterface
         $this->providerRegistry->getProvider($providerName)->prepareAuthentication($user);
         $this->preparationRecorder->setTwoFactorProviderPrepared($firewallName, $providerName);
         $this->logger->info(sprintf('Two-factor provider "%s" prepared.', $providerName));
+
+        $this->twoFactorToken = null;
     }
 
     private function supports(TokenInterface $token): bool
